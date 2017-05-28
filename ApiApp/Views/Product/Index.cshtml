@@ -1,0 +1,39 @@
+﻿@model ApiApp.Models.Product
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="index">
+    <h2>Index</h2>
+
+    @Html.ActionLink("Add New", "Create", "Product", new { @class = "btn btn-default" })
+    <hr />
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>SL#</th>
+                <th>@Html.DisplayNameFor(m => m.ProductName)</th>
+                <th>@Html.DisplayNameFor(m => m.Price)</th>
+                <th>@Html.DisplayNameFor(m => m.Description)</th>
+                <th width="180">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in products">
+                <td>{{ $index + 1 }}</td>
+                <td>{{product.ProductName}}</td>
+                <td>{{product.Price}}</td>
+                <td>{{product.Description}}</td>
+                <td>
+                    <a href="/Product/Details/{{product.ProductId}}" class="btn btn-xs btn-info">Details</a>
+                    <a href="/Product/Edit/{{product.ProductId}}" class="btn btn-xs btn-default">Edit</a>
+                    <button data-productid="{{product.ProductId}}" class="btn btn-xs btn-danger" ng-click="confirm(this)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

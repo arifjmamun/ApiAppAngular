@@ -1,0 +1,30 @@
+﻿@model ApiApp.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="details">
+    <h4>Product Details</h4>
+    <hr/>
+
+    <table class="table table-bordered table-responsive table-hover" ng-init="showDetails('@Model.ProductId')">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+            <td>{{product.ProductName}}</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <td>{{product.Price}}</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <td>{{product.Description}}</td>
+        </tr>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {id = Model.ProductId}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
